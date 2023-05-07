@@ -6,6 +6,4 @@ import ru.gym.tasksserviceapi.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
-    User findDistinctFirstByEmailAndId(String email, int id);
 }

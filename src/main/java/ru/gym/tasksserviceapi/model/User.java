@@ -21,7 +21,4 @@ public class User {
 
     @Email
     private String email;
-
-    @Transient
-    private String password;
 }

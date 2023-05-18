@@ -11,9 +11,17 @@ import ru.gym.tasksserviceapi.repository.UserRepository;
 public class UserService {
     private final UserRepository userRepository;
 
+
+
+
     @Transactional
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    public User find(int id) {
+        return userRepository.findById(id)
+                .orElseThrow();
     }
 
     @Transactional
@@ -28,16 +36,13 @@ public class UserService {
     }
 
 
-    public User find(int id) {
-        return userRepository.findById(id)
-                .orElseThrow();
-    }
 
 
 
-    public User byEmail(String ema, int id) {
-        return userRepository.findDistinctFirstByEmailAndId(ema, id);
-    }
+
+//    public User byEmail(String ema, int id) {
+//        return userRepository.findDistinctFirstByEmailAndId(ema, id);
+//    }
 
 
 }

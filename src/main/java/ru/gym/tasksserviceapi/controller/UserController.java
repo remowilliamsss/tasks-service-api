@@ -3,25 +3,23 @@ package ru.gym.tasksserviceapi.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import ru.gym.tasksserviceapi.dto.UserDto;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.gym.tasksserviceapi.model.User;
 import ru.gym.tasksserviceapi.service.UserService;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    //ObjectMapper
-    //MapStruct
-    private final Mapper mapper;
 
-    //Http status
-    public ResponseEntity<UserDto> find(int id) {
-        User user = userService.find(id);
+    @PostMapping
+    public ResponseEntity<User> create(@RequestBody User user) {
+        user = userService.create(user);
 
-        UserDto userDto = mapper.toDto(user);
-
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

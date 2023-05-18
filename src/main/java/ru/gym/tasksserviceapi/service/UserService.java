@@ -12,19 +12,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public User save(User user) {
+    public User create(User user) {
         return userRepository.save(user);
-    }
-
-    @Transactional
-    public User update(User user) {
-        user = find(user.getId());
-
-        user.setName("name");
-
-        save(user);
-
-        return user;
     }
 
 
@@ -32,12 +21,4 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow();
     }
-
-
-
-    public User byEmail(String ema, int id) {
-        return userRepository.findDistinctFirstByEmailAndId(ema, id);
-    }
-
-
 }
